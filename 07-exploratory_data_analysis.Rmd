@@ -81,6 +81,8 @@ ggplot(smaller, mapping = aes(x = carat)) +
 ```{r 07-replace-weird}
 diamonds2 <- diamonds %>% 
   mutate(y = ifelse(y < 3 | y > 20, NA, y))
+
+select_n
 ```
 
 - `{ggplot2}` will give a warning when values are missing, can suppress with `na.rm = TRUE`.
@@ -133,6 +135,25 @@ ggplot(faithful) +
   aes(eruptions) +
   geom_freqpoly(binwidth = 0.25)
 ```
+
+# Exercise 7.5.2.1
+```{r}
+diamonds %>% 
+  count(color, cut) %>%  
+  ggplot(mapping = aes(x = color, y = cut)) +
+    geom_tile(mapping = aes(fill = n))
+```
+
+1. How could you rescale the count dataset above to more clearly show the distribution of cut within colour, or colour within cut?
+
+```{r}
+diamonds %>% 
+  count(color, cut) %>%  
+  ggplot(mapping = aes(x = color, y = cut)) +
+    geom_tile(mapping = aes(fill = n))
+```
+
+
 
 ## Learning More
 
